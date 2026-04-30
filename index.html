@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ανοιχτή Επιστολή — ΜΟΝΟ ΓΚΡΙ ΑΠΟΧΡΩΣΕΙΣ (ασφαλές για PDF)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================= */
+  /* ΓΚΡΙ ΠΑΛΕΤΑ — LIGHTER/SOFTER — PDF-SAFE      */
+  /* ============================================= */
+  /*
+     Παλέτα (από σκούρο προς ανοιχτό):
+     --ink:        #333333  κύριο κείμενο
+     --ink-mid:    #666666  δευτερεύον κείμενο, labels
+     --ink-soft:   #999999  placeholders, διαχωριστικά
+     --surface-dk: #4A4A4A  hero, footer, questions bg
+     --surface-md: #787878  tags, badges
+     --surface-lt: #F2F2F2  box φόντα
+     --surface-wh: #FAFAFA  body φόντο (όχι καθαρό λευκό)
+     --border:     #D8D8D8  γραμμές
+     --th-bg:      #5A5A5A  thead
+     --white:      #FFFFFF  κείμενο πάνω σε σκούρο φόντο
+  */
+
+  :root {
+    --ink:        #333333;
+    --ink-mid:    #666666;
+    --ink-soft:   #999999;
+    --surface-dk: #4A4A4A;
+    --surface-md: #787878;
+    --surface-lt: #F2F2F2;
+    --surface-wh: #FAFAFA;
+    --border:     #D8D8D8;
+    --th-bg:      #5A5A5A;
+    --white:      #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--surface-wh);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.78;
+    font-weight: 300;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: var(--surface-dk);
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 3px solid var(--surface-md);
+  }
+  .hero-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C8C8C8;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-style: italic;
+    color: #C0C0C0;
+    margin-bottom: 2rem;
+  }
+  .hero-rule {
+    width: 50px;
+    height: 2px;
+    background: var(--surface-md);
+    margin: 0 auto 2rem;
+  }
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2.6vw, 1.5rem);
+    font-weight: 700;
+    font-style: italic;
+    color: #BBBBBB;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* ---- RECIPIENTS STRIP ---- */
+  .recipients-strip {
+    background: var(--surface-dk);
+    border-top: 1px solid var(--surface-md);
+    padding: 1.6rem 2rem;
+  }
+  .recipients-inner {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+  .recipients-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #BBBBBB;
+    margin-bottom: 0.9rem;
+  }
+  .recipients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .recipient-tag {
+    background: var(--surface-md);
+    border: 1px solid #9A9A9A;
+    color: var(--white);
+    padding: 0.28rem 0.85rem;
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  /* ---- MAIN LAYOUT ---- */
+  .main-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---- SECTION ---- */
+  .section {
+    padding: 3.5rem 0 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-of-type { border-bottom: none; }
+
+  .section-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 0.3rem;
+  }
+  .section-title-rule {
+    width: 36px;
+    height: 2px;
+    background: var(--ink-mid);
+    margin-bottom: 1.8rem;
+  }
+  .subsection-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-top: 2rem;
+    margin-bottom: 0.7rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  p {
+    margin-bottom: 1.1rem;
+    color: var(--ink);
+  }
+  strong {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ---- LISTS ---- */
+  .styled-list {
+    list-style: none;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0;
+  }
+  .styled-list li {
+    padding: 0.5rem 0 0.5rem 1.8rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .styled-list li:last-child { border-bottom: none; }
+  .styled-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  .styled-ol {
+    counter-reset: item;
+    list-style: none;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0;
+  }
+  .styled-ol li {
+    counter-increment: item;
+    padding: 0.55rem 0 0.55rem 2.8rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink);
+  }
+  .styled-ol li:last-child { border-bottom: none; }
+  .styled-ol li::before {
+    content: counter(item, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.73rem;
+    color: var(--ink-mid);
+    font-weight: 600;
+  }
+
+  /* ---- BOX COMPONENTS ---- */
+  /* warning-box: ανοιχτό γκρι με αριστερό border */
+  .warning-box {
+    background: var(--surface-lt);
+    border-left: 4px solid var(--ink-mid);
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+  }
+  .warning-box p { color: var(--ink); margin-bottom: 0; }
+  .warning-box strong { color: var(--ink); }
+
+  /* quote-box */
+  .quote-box {
+    background: var(--surface-lt);
+    border-left: 4px solid var(--ink);
+    padding: 1.4rem 1.7rem;
+    margin: 2rem 0;
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+  .quote-box p { color: var(--ink); margin-bottom: 0; }
+
+  /* callout-info / callout-warning / callout-math */
+  .callout-info,
+  .callout-warning,
+  .callout-math {
+    background: var(--surface-lt);
+    border-left: 4px solid var(--ink-mid);
+    padding: 1.2rem 1.5rem;
+    margin: 1.8rem 0;
+  }
+  .callout-info p,
+  .callout-warning p,
+  .callout-math p {
+    color: var(--ink);
+    margin-bottom: 0;
+  }
+  .callout-info strong,
+  .callout-warning strong,
+  .callout-math strong { color: var(--ink); }
+
+  /* conclusion-box */
+  .conclusion-box {
+    background: var(--surface-lt);
+    border-left: 4px solid var(--ink);
+    padding: 1.7rem 1.9rem;
+    margin: 2rem 0;
+  }
+  .conclusion-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+  }
+  .conclusion-box p { color: var(--ink); margin-bottom: 0.8rem; }
+  .conclusion-box p:last-child { margin-bottom: 0; }
+  .conclusion-box strong { color: var(--ink); }
+
+  /* ---- DATA TABLE ---- */
+  .data-table-wrapper { margin: 1.5rem 0; overflow-x: auto; }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    border: 1px solid var(--border);
+  }
+  .data-table th {
+    background: var(--th-bg);
+    color: var(--white);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-right: 1px solid #717171;
+  }
+  .data-table td {
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    background: var(--white);
+    color: var(--ink);
+  }
+  .data-table tfoot td {
+    background: var(--surface-lt);
+    color: var(--ink-mid);
+    font-size: 0.83rem;
+    padding: 0.85rem 1rem;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--surface-lt); }
+
+  /* unify all highlight/positive/negative to just bold ink */
+  .data-table .highlight,
+  .data-table .positive,
+  .data-table .highlight-positive,
+  .data-table .highlight-negative {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .table-subnote {
+    font-size: 0.76rem;
+    color: var(--ink-mid);
+    display: block;
+    margin-top: 0.15rem;
+  }
+  .table-up { color: var(--ink-mid); font-weight: 700; }
+
+  /* warning/danger rows — stay neutral */
+  .warning-row td,
+  .danger-row td {
+    background: var(--white);
+    color: var(--ink);
+  }
+  .data-table tr:nth-child(even).warning-row td,
+  .data-table tr:nth-child(even).danger-row td {
+    background: var(--surface-lt);
+  }
+
+  /* ---- NUMBERS GRID ---- */
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+  }
+  .number-card {
+    background: var(--white);
+    padding: 1.4rem 1rem;
+    text-align: center;
+  }
+  .number-card-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .number-card-value.danger { color: var(--ink); }
+  .number-card-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+  }
+
+  /* ---- QUESTIONS BLOCK ---- */
+  /* φόντο: μεσαίο γκρι (#4A4A4A) → ικανοποιητικό contrast με λευκό κείμενο */
+  .questions-block {
+    background: var(--surface-dk);
+    color: var(--white);
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+  .questions-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #E8E8E8;
+    margin-bottom: 1.4rem;
+  }
+  .questions-block p {
+    color: #D4D4D4;
+    margin-bottom: 1rem;
+  }
+  .questions-block ol {
+    counter-reset: q;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .questions-block ol li {
+    counter-increment: q;
+    padding: 0.8rem 0 0.8rem 3rem;
+    position: relative;
+    border-bottom: 1px solid #686868;
+    color: #EEEEEE;
+    font-size: 0.93rem;
+  }
+  .questions-block ol li:last-child { border-bottom: none; }
+  .questions-block ol li strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+  .questions-block ol li::before {
+    content: counter(q);
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    width: 2rem;
+    height: 2rem;
+    background: var(--surface-md);
+    color: var(--white);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---- TWO COLUMNS ---- */
+  .two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  /* ---- CARD (neutral grey, no red/orange) ---- */
+  .card-negative {
+    background: var(--surface-lt);
+    border-left: 3px solid var(--ink-mid);
+    padding: 1.1rem 1.3rem;
+  }
+  .card-negative h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+  }
+  .card-negative ul { list-style: none; padding: 0; margin: 0; }
+  .card-negative ul li {
+    padding: 0.38rem 0 0.38rem 1.4rem;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--border);
+  }
+  .card-negative ul li:last-child { border-bottom: none; }
+  .card-negative ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+  .card-negative ul li strong { color: var(--ink); }
+
+  /* ---- STEPS BLOCK ---- */
+  .steps-block { display: grid; gap: 0.9rem; margin: 1.5rem 0; }
+  .step-card {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding: 1.1rem 1.2rem;
+    background: var(--surface-lt);
+    border-left: 3px solid var(--ink-mid);
+  }
+  .step-number {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink-mid);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .step-content strong {
+    display: block;
+    font-size: 0.97rem;
+    margin-bottom: 0.25rem;
+    color: var(--ink);
+  }
+  .step-content span {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+  }
+
+  /* ---- LINKS ---- */
+  a { color: var(--ink); text-decoration: underline; }
+  a:hover { color: var(--ink-mid); text-decoration: none; }
+
+  /* ---- TOC ---- */
+  .toc {
+    background: var(--surface-lt);
+    border-left: 4px solid var(--ink-mid);
+    padding: 1.6rem 1.9rem;
+    margin: 3rem 0;
+  }
+  .toc-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mid);
+    margin-bottom: 0.9rem;
+  }
+  .toc ol { list-style: none; counter-reset: toc; padding: 0; }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 0.28rem 0 0.28rem 2rem;
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+  .toc ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem;
+    color: var(--ink-soft);
+    top: 0.38rem;
+  }
+  .toc ol li a { color: var(--ink); text-decoration: none; }
+  .toc ol li a:hover { text-decoration: underline; }
+
+  /* ---- CLOSING ---- */
+  .closing { padding: 4rem 0; text-align: center; }
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    font-style: italic;
+    color: var(--ink);
+    max-width: 580px;
+    margin: 0 auto 2rem;
+  }
+  .signature { font-size: 0.93rem; color: var(--ink-mid); margin-bottom: 2rem; }
+  .footer-note {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 1.4rem;
+    border: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--ink-mid);
+    font-style: italic;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--surface-dk);
+    color: #BBBBBB;
+    text-align: center;
+    padding: 1.8rem 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+  }
+  footer a { color: #CCCCCC; text-decoration: underline; }
+  footer a:hover { text-decoration: none; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 700px) {
+    .two-columns { grid-template-columns: 1fr; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .questions-block { padding: 1.5rem; }
+    .hero { padding: 2.8rem 1.2rem; }
+    .section { padding: 2.5rem 0 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <p class="hero-eyebrow">Προς την Πολιτεία · Τράπεζα της Ελλάδας · Κόμματα · Ανεξάρτητες Αρχές</p>
+  <h1 class="hero-title">ΑΝΟΙΧΤΗ ΕΠΙΣΤΟΛΗ</h1>
+  <p class="hero-subtitle">Προς την Πολιτεία, την Τράπεζα της Ελλάδας,<br>τα Κόμματα, τις Ανεξάρτητες Αρχές</p>
+  <div class="hero-rule"></div>
+  <p class="hero-tagline">«Γνωρίζατε, είχατε εναλλακτικές —<br>γιατί δεν τις επιλέξατε;»</p>
+</header>
+
+<!-- RECIPIENTS -->
+<div class="recipients-strip">
+  <div class="recipients-inner">
+    <p class="recipients-label">Αποδέκτες</p>
+    <div class="recipients-list">
+      <span class="recipient-tag">Πρωθυπουργός & Υπουργικό Συμβούλιο</span>
+      <span class="recipient-tag">Τράπεζα της Ελλάδος</span>
+      <span class="recipient-tag">Πολιτικοί Αρχηγοί & Κόμματα</span>
+      <span class="recipient-tag">Επιτροπή Ανταγωνισμού</span>
+      <span class="recipient-tag">Συνήγορος του Πολίτη</span>
+      <span class="recipient-tag">Αρχή Προστασίας Δεδομένων</span>
+      <span class="recipient-tag">Κοινωνία Πολιτών</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrapper">
+
+  <!-- TOC -->
+  <nav class="toc" aria-label="Περιεχόμενα">
+    <p class="toc-title">Περιεχόμενα</p>
+    <ol>
+      <li><a href="#part1">Μιλάμε με σεβασμό, αλλά ζητάμε απαντήσεις</a></li>
+      <li><a href="#part2">Προς τον Πρωθυπουργό — Αριθμοί και αλήθειες</a></li>
+      <li><a href="#part3">Προς Χαρδούβελη και Στουρνάρα</a></li>
+      <li><a href="#part4">Ο Μύθος της Εξυγίανσης</a></li>
+      <li><a href="#part5">45 Αποχρώσεις Κρατικής Ενίσχυσης</a></li>
+      <li><a href="#steps">Τέσσερα Άμεσα Βήματα</a></li>
+    </ol>
+  </nav>
+
+  <!-- PART 1 -->
+  <section class="section" id="part1">
+    <span class="section-number">Μέρος Πρώτο</span>
+    <h2 class="section-title">Μιλάμε με σεβασμό, αλλά ζητάμε απαντήσεις</h2>
+    <div class="section-title-rule"></div>
+
+    <p>Απευθυνόμαστε σε εσάς γιατί....</p>
+
+    <p>Γνωρίζατε ότι τα Μη Εξυπηρετούμενα Δάνεια (ΜΕΔ) δημιουργήθηκαν με ευθύνη του τραπεζικού τομέα και της κρατικής πολιτικής.</p>
+
+    <p> Γνωρίζατε την έκτασή τους, αμείωτη μέχρι και σήμερα, που ανακοινώνετε ότι φτάνουν τα €80.2 δις.</p>
+
+    <p>Γνωρίζατε τις κατευθύνσεις της G20, των πυλώνων της Βασιλείας (Basel Pillars) και τις τρεις της Ευρωπαϊκής Ένωσης:</p>
+
+    <ol class="styled-ol">
+      <li><strong>Πώληση ΜΕΔ σε επενδυτές</strong> με όρους αγοράς — μηχανισμοί αγοράς, χωρίς δημόσια χρηματοδότηση</li>
+      <li><strong>Σχήματα προστασίας ενεργητικού (APS)</strong> — κρατικές εγγυήσεις και burden sharing</li>
+      <li><strong>Δημιουργία Δημόσιας ή μεικτής «Κακής Τράπεζας» (AMC)</strong> — μεταφορά στοιχείων σε ανεξάρτητο φορέα</li>
+    </ol>
+
+    <p>Γνωρίζατε ότι αποφύγατε ενσυνείδητα κατόπιν απαίητησης του τραπεζικού τομέα, να εφαρμόσετε οποιαδήποτε από τις τρεις αυτές κατευθύνσεις και επιλέξατε, ως θεσμικό εργαλείο για τη διαχείριση των "κόκκινων δανείων"  το <strong>ν. 3156/2003</strong> ο οποίος ήταν θεμελιωμένος στην Οδηγία 2001/24/ΕΚ, η οποία, όπως, είχε, ήδη, καταργηθεί και αντικατασταθεί από νέο, πολυεπίπεδο ενωσιακό δίκαιο, το οποίο:</p>
+
+    <ul class="styled-list">
+      <li><strong>BRRD (2014)</strong> — είχε θεσπίσει, ως προϋπόθεση εξυγίανσης, την Κατανομή του Βάρους (burden sharing) και την υποχρέωση εφαρμογής κανόνων προτεραιοποίησης μετακύλισης του Βάρους (Bail-In) πριν από κάθε κρατική ενίσχυση</li>
+      <li><strong>CRD IV &amp; CRD V</strong> — καθόριζε κανόνες  για τις Κεφαλαιακές Απαιτήσεις: κεφάλαια, ρευστότητα, διακυβέρνηση</li>
+      <li><strong>Οδηγία (ΕΕ) 2021/2167</strong> — επέβαλε Ειδικό πλαίσιο για αγοραστές πιστώσεων και διαχειριστές τους με απαιτήσεις διαφάνειας και δικαιωμάτων δανειοληπτών</li>
+    </ul>
+
+    <div class="warning-box">
+      <p>Υποκύπτοντας στις απαιτήσεις των τραπεζών και των μετόχων τους και εφαρμόζοντας τον ανυπόστατο ν. 3156 για μαζικές τιτλοποιήσεις ΜΕΔ, χωρίς να εναρμονιστείτε με το νέο πλαίσιο, δημιουργήσατε ένα <strong>νομικό υβρίδιο</strong>, που <strong>καμία άλλη ευρωπαϊκή χώρα</strong> ακολούθησε ή δημιούργησε σ' αυτή την έκταση. Το αποτέλεσμα είναι νομική ανασφάλεια, παραβίαση δικαιωμάτων και ασυμβατότητα με το ευρωπαϊκό και το υπερνομοθετικό δίκαιο. </p>
+    </div>
+
+    <p>Αν και γνωρίζατε τα επιτυχημένα ευρωπαϊκά παραδείγματα: <strong>NAMA</strong> (Ιρλανδία), <strong>ΚΕΔΙΠΕΣ</strong> (Κύπρος), <strong>SAREB</strong> (Ισπανία), <strong>FMS Wertmanagement</strong> (Γερμανία), <strong>HETA</strong> (Αυστρία) — όλες δημόσιες ή εποπτευόμενες Κακές Τράπεζες.</p>
+
+    <p>Αν και γνωρίζατε, από δημοσιεύματα και αρθρογααφία, όπως των κ. Χαρδούβελη και κ. Στουρνάρα στους οποίους αναφερόμαστε παρακάτω, τις συστάσεις τους που μάλιστα είχαν και συνοψιστεί στο γεγονός, ότι το 2020–2021 η Τράπεζα της Ελλάδος κατέθεσε επίσημη συστημική πρόταση για <strong>Εθνική Bad Bank</strong>, η οποία θα αγόραζε τα ΜΕΔ στην πραγματική αγοραία αξία τους.</p>
+  </section>
+
+    <!-- PART 2 -->
+  <section class="section" id="part2">
+    <span class="section-number">Μέρος Δεύτερο</span>
+    <h2 class="section-title">Προς τον Πρωθυπουργό, κ. Κυριάκο Μητσοτάκη</h2>
+    <div class="section-title-rule"></div>
+
+    <p>Κύριε Πρωθυπουργέ, διαβάσαμε την πρόσφατη τοποθέτησή σας στο Ναύπλιο για το επιτελικό κράτος, τα 36 δισ. ευρώ του Ταμείου Ανάκαμψης και τη «μείωση του χρέους με ταχύτερο ρυθμό στον κόσμο». Την ίδια όμως εβδομάδα, η Eurostat ανακοίνωσε <strong>πληθωρισμό 4,6%</strong> στην Ελλάδα – τον υψηλότερο στην Ευρωζώνη – και η Εθνική Τράπεζα, υπό την προεδρία του κ. Χαρδούβελη, <strong>μοίρασε 1 δισ. ευρώ σε μετόχους</strong>.</p>
+
+    <p>Με σεβασμό, θα θέλαμε να αντιπαραβάλουμε στα λόγια σας τα <strong>επίσημα αριθμητικά δεδομένα, όπως διαμορφώθηκαν την τελευταία εβδομάδα του Απριλίου 2026</strong>.</p>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 1: ΑΝΑΛΥΣΗ ΝΟΥΜΕΡΩΝ (ΕΠΙΚΑΙΡΟΠΟΙΗΜΕΝΗ) ========== -->
+    <h3 class="subsection-title">Αναλύοντας τα νούμερα: Χρέος, ανάπτυξη, πληθωρισμός (30 Απριλίου 2026)</h3>
+
+    <div class="warning-box">
+      <p><strong>📊 Η Eurostat επιβεβαίωσε (30/4/2026):</strong> Ο πληθωρισμός στην Ελλάδα εκτοξεύθηκε στο <strong>4,6%</strong> τον Απρίλιο (από 3,4% τον Μάρτιο), την ώρα που στην Ευρωζώνη είναι στο 3,0%. Η Ελλάδα έχει τον υψηλότερο πληθωρισμό στην Ευρωζώνη.</p>
+    </div>
+
+    <div class="numbers-grid">
+      <div class="number-card">
+        <div class="number-card-value">2,0%</div>
+        <div class="number-card-label">Πραγματική ανάπτυξη (g)<br>Μεσοπρόθεσμο 2026</div>
+      </div>
+      <div class="number-card">
+        <div class="number-card-value danger">4,6%</div>
+        <div class="number-card-label">Πληθωρισμός (Απρ. 2026)<br>Eurostat – υψηλότερος στην ΕΕ</div>
+      </div>
+      <div class="number-card">
+        <div class="number-card-value danger">1,7%</div>
+        <div class="number-card-label">Πρόβλεψη S&amp;P<br>(πιο συντηρητική)</div>
+      </div>
+      <div class="number-card">
+        <div class="number-card-value danger">406 δισ.</div>
+        <div class="number-card-label">Χρέος Κεντρικής Διοίκησης<br>ΟΔΔΗΧ, Φεβρ. 2026</div>
+      </div>
+    </div>
+
+    <div class="callout-math">
+      <p>📐 <strong>Η απλή λογική των αριθμών – αναπροσαρμοσμένη με τα στοιχεία Eurostat (30/4/2026):</strong><br>
+      1. Η ονομαστική ανάπτυξη είναι <strong>6,6%</strong> (4,6% ακρίβεια + 2,0% πραγματική ανάπτυξη).<br>
+      &nbsp;&nbsp;&nbsp;→ Από αυτό, μόλις το <strong>30%</strong> είναι πραγματική παραγωγή – το <strong>70%</strong> είναι ακρίβεια.<br>
+      2. Το χρέος «κρύβεται»: 50 δισ. ευρώ είναι δανεικά από τα ασφαλιστικά ταμεία, δεν φαίνονται στο επίσημο 136,8%.<br>
+      3. Αν η πραγματική ανάπτυξη πέσει στο 1,7% (S&amp;P), το χρέος αποσταθεροποιείται (r > g) – και με πληθωρισμό 4,6%, η σταθεροποίηση γίνεται ακόμα πιο εύθραυστη.</p>
+    </div>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 2: ΤΟ ΧΡΕΟΣ ========== -->
+    <h3 class="subsection-title">Το χρέος που δημοσιοποιείται vs. το πραγματικό χρέος</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Μέτρηση</th>
+            <th>Ποσοστό</th>
+            <th>Παρατήρηση</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Επίσημο χρέος Γεν. Κυβέρνησης</td>
+            <td>136,8% ΑΕΠ</td>
+            <td>Κυβερνητική ανακοίνωση</td>
+          </tr>
+          <tr>
+            <td>Χρέος αν πληθωρισμός = 2% (κοινοτικός στόχος)</td>
+            <td class="highlight">~142,7% ΑΕΠ</td>
+            <td>Πληθωριστική ψευδαίσθηση: +5,9 μ.μ.</td>
+          </tr>
+          <tr>
+            <td>Χρέος συμπ. εσωτερικού δανεισμού</td>
+            <td class="highlight">~155,6% ΑΕΠ</td>
+            <td>50 δισ. «κρυμμένα» σε ταμεία ΕΦΚΑ/ΟΤΑ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Η διαφορά των 50 δισ. ευρώ είναι <strong>εσωτερικός δανεισμός</strong> από τα ασφαλιστικά ταμεία (ΕΦΚΑ) και τους ΟΤΑ. Πρόκειται για μία σιωπηρή «αφαίμαξη»: το κράτος δανείζεται από τα αποθέματα των ασφαλισμένων, μειώνοντας τη ρευστότητά τους, χωρίς αυτό να αποτυπώνεται στο χρέος που δημοσιοποιείται.</p>
+
+    <div class="callout-warning">
+      <p>⚠️ <strong>Αν αυτή η διαφορά δεν αφαιρούνταν λογιστικά, το χρέος ως ποσοστό του ΑΕΠ δεν θα ήταν 136,8% αλλά πάνω από 155%.</strong> Η μείωση του χρέους είναι, σε μεγάλο βαθμό, λογιστική πλάνη – και τώρα που ο πληθωρισμός εκτοξεύθηκε στο 4,6%, η πλάνη γίνεται ακόμα μεγαλύτερη.</p>
+    </div>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 3: r – g ========== -->
+    <h3 class="subsection-title">r – g: Το κρίσιμο spread χρέους</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Σενάριο</th>
+            <th>r – g</th>
+            <th>Αξιολόγηση</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Μεσοπρόθεσμο (g = 2,0%)</td>
+            <td class="positive">–0,21%</td>
+            <td>Οριακά σταθερό</td>
+          </tr>
+          <tr>
+            <td>S&amp;P (g = 1,7%)</td>
+            <td class="highlight">+0,09%</td>
+            <td>Ασταθές χρέος – η ανάπτυξη δεν φτάνει ούτε για τους τόκους</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Το σταθμισμένο κόστος εξυπηρέτησης του δημόσιου χρέους (r) ανέρχεται σε <strong>1,79%</strong> (ΟΔΔΗΧ). Ακόμα και με την πιο αισιόδοξη πρόβλεψη (g = 2,0%), το περιθώριο ασφαλείας είναι οριακό. Αν η ανάπτυξη πέσει στο 1,7% (όπως προειδοποιεί η S&amp;P), τότε η δυναμική του χρέους καθίσταται ασταθής.</p>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 4: ΤΟ ΤΑΜΕΙΟ ΑΝΑΚΑΜΨΗΣ ========== -->
+    <h3 class="subsection-title">Το Ταμείο Ανάκαμψης – επενδυτικό κενό χωρίς αντίκρισμα</h3>
+
+    <p>Τα 36 δισ. ευρώ του Ταμείου Ανάκαμψης δεν μετουσιώθηκαν σε ανάπτυξη. Πήγαν σε επιδόματα, ανακαινίσεις και οικοδομές – όχι σε μεταποίηση, έρευνα, καινοτομία.</p>
+
+    <p>Την ίδια στιγμή, κύριε Πρωθυπουργέ:</p>
+    <ul class="styled-list">
+      <li>Εγγυήσεις <strong>17,1 δισ. ευρώ</strong> σε funds μέσω του προγράμματος «Ηρακλής» (ΟΔΔΗΧ)</li>
+      <li>Δώρο <strong>15,4 δισ. ευρώ</strong> σε τράπεζες (DTCs) – κρυφή δημοσιονομική έκθεση <strong>30 δισ.</strong> (ΔΝΤ)</li>
+      <li>Φοροαπαλλαγές και προνόμια σε servicers που καταγράφουν υπερκέρδη (doValue: €4 εκατ. το 2019 → €79 εκατ. το 2023)</li>
+    </ul>
+
+    <div class="quote-box">
+      <p>Κύριε Πρωθυπουργέ, <strong>η μία σας παλάμη μοιράζει εγγυήσεις, φοροαπαλλαγές και λογιστικά δώρα σε τράπεζες, funds και servicers. Η άλλη παλάμη μαζεύει φόρους από τους πολίτες, τους αφήνει στην ακρίβεια (4,6%) και αφαιμάζει τα ασφαλιστικά τους ταμεία (50 δισ. εσωτερικός δανεισμός).</strong> Η ανάπτυξη δεν έρχεται — απλώς η επιβάρυνση μεταφέρεται από τους λίγους στους πολλούς.</p>
+    </div>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 5: ΤΟ ΤΕΛΟΣ ΤΟΥ ΤΑΜΕΙΟΥ ΑΝΑΚΑΜΨΗΣ ========== -->
+    <h3 class="subsection-title">Το τέλος του Ταμείου Ανάκαμψης — το επερχόμενο σοκ</h3>
+
+    <p>Ο Επίτροπος Ντομπρόβσκις ξεκαθάρισε ότι το Ταμείο Ανάκαμψης <strong>τελειώνει οριστικά το 2026</strong>. Το δικό σας Μεσοπρόθεσμο Σχέδιο προβλέπει ότι μετά τη λήξη του, η ανάπτυξη θα πέσει στο <strong>0,2%–0,4%</strong> ετησίως την περίοδο 2029–2034.</p>
+
+    <div class="callout-warning">
+      <p>⚠️ Αν τα 36 δισεκατομμύρια ήταν μια επιτυχημένη επένδυση, γιατί η οικονομία δεν μπορεί να σταθεί χωρίς αυτά; Μήπως δεν δημιουργήσατε ανάπτυξη — απλώς <strong>ναρκώσατε προσωρινά τα συμπτώματα</strong> της στασιμότητας;</p>
+    </div>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 6: ΣΥΜΠΕΡΑΣΜΑ ========== -->
+    <div class="conclusion-box">
+      <h3>📌 Το συμπέρασμα: Το χρέος δεν μειώθηκε — κρύφτηκε</h3>
+      <p>Η μείωση του χρέους από 207% το 2020 στο 136,8% σήμερα οφείλεται:<br>
+      (α) στον <strong>πληθωρισμό</strong> (4,6% έναντι 2%) — δηλαδή στην ακρίβεια,<br>
+      (β) στον <strong>εσωτερικό δανεισμό</strong> (50 δισ. από τα ασφαλιστικά ταμεία) — δηλαδή στην αφαίμαξη των αποθεμάτων τους,<br>
+      (γ) σε <strong>λογιστικές ρυθμίσεις</strong> (αφαίρεση ενδοκυβερνητικού χρέους) — δηλαδή στο «κρύψιμο» υποχρεώσεων.</p>
+      <p><strong>Δεν μειώσατε το χρέος. Το κρύψατε. Και το τίμημα το πληρώνουν οι πολίτες, οι ασφαλισμένοι και οι συνταξιούχοι — με ακρίβεια 4,6%, με χαμηλές συντάξεις, με αβέβαιο μέλλον.</strong></p>
+    </div>
+
+    <!-- ========== ΕΝΟΤΗΤΑ 7: ΕΡΩΤΗΜΑΤΑ ========== -->
+    <div class="questions-block">
+      <h3>7. Τα ερωτήματά μας προς τον Πρωθυπουργό μετά από αυτή την εβδομάδα</h3>
+      <p>Κύριε Μητσοτάκη, την τελευταία εβδομάδα του Απριλίου 2026, οι πολίτες είδαν:</p>
+      <ul>
+        <li>Τη Eurostat να ανακοινώνει πληθωρισμό <strong>4,6%</strong> – την υψηλότερη ακρίβεια στην Ευρωζώνη.</li>
+        <li>Την Εθνική Τράπεζα (με τον κ. Χαρδούβελη πρόεδρο) να μοιράζει <strong>1 δισ. ευρώ</strong> σε μετόχους, λέγοντας «Μπορείτε να χειροκροτήσετε».</li>
+        <li>Την κυβέρνηση να παραδέχεται ότι το Ταμείο Ανάκαμψης τελειώνει και η ανάπτυξη θα πέσει στο <strong>0,2%-0,4%</strong>.</li>
+      </ul>
+      <p>Με αυτά τα δεδομένα, σας καλούμε να απαντήσετε, χωρίς υπεκφυγές:</p>
+      <ol>
+        <li><strong>Πότε προβλέπετε η πραγματική ανάπτυξη (g) να ξεπεράσει σταθερά το κόστος εξυπηρέτησης του χρέους (r), χωρίς πληθωριστική φούσκα (4,6%);</strong></li>
+        <li><strong>Προτίθεστε να σταματήσετε τις κρατικές ενισχύσεις (DTCs, εγγυήσεις «Ηρακλή») και να επαναφέρετε τη λύση της Εθνικής Bad Bank;</strong></li>
+        <li><strong>Γιατί επιτρέπετε στις τράπεζες που στηρίζονται σε κρατικά δώρα (15,4 δισ. DTCs) να μοιράζουν μερίσματα 1 δισ. την ώρα της ακρίβειας;</strong></li>
+        <li><strong>Πώς σκοπεύετε να προστατεύσετε τους πολίτες από την ακρίβεια 4,6%;</strong></li>
+        <li><strong>Σε ποιες συγκεκριμένες ημερομηνίες θα αποκαταστήσετε τα αποθέματα των ασφαλιστικών ταμείων που αφαιμάξατε (50 δισ. εσωτερικός δανεισμός);</strong></li>
+      </ol>
+    </div>
+
+  </section>
+
+    <!-- PART 3 -->
+  <section class="section" id="part3">
+    <span class="section-number">Μέρος Τρίτο</span>
+    <h2 class="section-title">Προς τον κ. Γκίκα Χαρδούβελη και τον κ. Γιάννη Στουρνάρα</h2>
+    <div class="section-title-rule"></div>
+
+    <p>Γνωρίζουμε ότι το διάβασμα αυτής της επιστολής μπορεί να σας φέρει μπροστά σε αντιφάσεις που δεν έχετε συνηθίσει να συζητάτε δημόσια. <strong>Απευθυνόμαστε και στους δύο, αλλά με διαφορετικό βάρος</strong> – γιατί διαφορετική είναι και η θέση σας σήμερα και η ευθύνη που φέρετε.</p>
+
+    <!-- ========== ΧΑΡΔΟΥΒΕΛΗΣ ========== -->
+    <h3 class="subsection-title">Κύριε Χαρδούβελη – Από την πρόταση Bad Bank στο μέρισμα των 1 δισ. ευρώ</h3>
+    
+    <p>Εσείς υπήρξατε υπουργός σε μια εκρηκτική περίοδο, το 2014. Περπατούσατε σε τεντωμένο σκοινί, δεχθήκατε πυρά ακόμα και από τη δική σας τότε κυβέρνηση. Γνωρίζατε τις ανακοινώσεις της Τράπεζας της Ελλάδος, γνωρίζατε την ανάγκη για Bad Bank – και είχατε τοποθετηθεί δημόσια προς αυτή την κατεύθυνση. <strong>Η πρότασή σας ήταν εντός των σωστών κατευθύνσεων.</strong></p>
+
+    <p>Σήμερα, όμως, δεν είστε απλώς ένας πρώην υπουργός που σιώπησε. <strong>Είστε ο Πρόεδρος της Εθνικής Τράπεζας.</strong> Και την ίδια μέρα που η Eurostat ανακοίνωνε πληθωρισμό 4,6% στην Ελλάδα – τον υψηλότερο στην Ευρωζώνη – εσείς από το βήμα της Γενικής Συνέλευσης της Εθνικής <strong>ζητούσατε χειροκρότημα για τη διανομή 1 δισ. ευρώ σε μετόχους.</strong></p>
+
+    <div class="warning-box">
+      <p><strong>🔴 Η δήλωση που μένει στην Ιστορία (30 Απριλίου 2026):</strong><br>
+      Ο CEO της Εθνικής, κ. Μυλωνάς, ανακοίνωσε <strong>«διανομή 1 δισ. ευρώ στους μετόχους μας (300 εκατ. έκτακτη διανομή)»</strong> και απευθυνόμενος στους μετόχους τους προέτρεψε: <strong>«Μπορείτε να χειροκροτήσετε».</strong><br>
+      Εσείς, κ. Χαρδούβελη, προσθέσατε: <strong>«Είμαστε η τράπεζα που μοιράζει το περισσότερο χρήμα στους μετόχους της»</strong> και <strong>«έχουμε χρήμα και μπορούμε να αγοράσουμε ασφαλιστική»</strong>.</p>
+    </div>
+
+    <p>Κύριε Χαρδούβελη, <strong>από πού προήλθε αυτό το χρήμα;</strong> Από τα DTCs (15,4 δισ. ευρώ) που το κράτος χάρισε στις τράπεζες; Από τις κρατικές εγγυήσεις του «Ηρακλή» (17,1 δισ. ευρώ); Από τα κέρδη που στηρίχθηκαν στην ακρίβεια (4,6%) και στη μείωση της αγοραστικής δύναμης των Ελλήνων;</p>
+
+    <div class="quote-box">
+      <p>Την ίδια ώρα που εσείς μοιράζατε μερίσματα, οι πολίτες πλήρωναν ακρίβεια 4,6%, τα ασφαλιστικά ταμεία αιμορραγούσαν (50 δισ. εσωτερικός δανεισμός), και η πραγματική οικονομία παρέμενε στάσιμη. <strong>Μας λέτε ότι η Εθνική έχει ισχυρή κερδοφορία και υψηλά κεφαλαιακά αποθέματα – αλλά ξεχνάτε να πείτε ότι αυτά τα αποθέματα είναι, σε μεγάλο βαθμό, κρατικά δώρα.</strong></p>
+    </div>
+
+    <p>Θυμάστε, κύριε Χαρδούβελη, τι είχατε προτείνει το 2014; <strong>Την Bad Bank.</strong> Μια λύση που θα κρατούσε τα ΜΕΔ υπό δημόσιο έλεγχο, με διαφάνεια και κοινωνική προστασία. Αντί αυτής, η τράπεζα της οποίας προΐσταστε σήμερα επωφελήθηκε από το αντίθετο σύστημα: τιτλοποιήσεις, πωλήσεις σε funds, servicers, και μερίσματα 1 δισ. ευρώ.</p>
+
+    <div class="callout-warning">
+      <p><strong>Και τώρα, κύριε Χαρδούβελη, σας ρωτάμε: Πού είναι η δική σας Bad Bank; Γιατί δεν την υπερασπιστήκατε όταν είχατε την ευκαιρία; Γιατί επιτρέπετε στην τράπεζα που προεδρεύετε να μοιράζει μερίσματα, όταν η κοινωνία καίγεται;</strong></p>
+    </div>
+
+    <p>Μιλήσατε για «εμπιστοσύνη» και «εταιρική κοινωνική ευθύνη». <strong>Πού είναι η ευθύνη απέναντι στους πολίτες που υποφέρουν από την ακρίβεια;</strong> Πού είναι η ευθύνη απέναντι στους δανειολήπτες που έχασαν τα σπίτια τους; Η Εθνική, υπό την προεδρία σας, έγινε η τράπεζα που μοιράζει το περισσότερο χρήμα στους μετόχους της – αλλά απέναντι στην κοινωνία, η ευθύνη της είναι μηδενική.</p>
+
+    <!-- ========== ΣΤΟΥΡΝΑΡΑΣ ========== -->
+    <h3 class="subsection-title">Κύριε Στουρνάρα — Ερωτήματα και Ευθύνες</h3>
+
+    <p>Εσείς είστε διαφορετική περίπτωση. Εσείς δεν υπήρξατε απλώς υπουργός. <strong>Είστε σήμερα Διοικητής της Τράπεζας της Ελλάδος – και ζητάτε να συνεχίσετε.</strong> Είχατε – και εξακολουθείτε να έχετε – θεσμική δυνατότητα παρέμβασης, δημόσιο λόγο, εποπτικά εργαλεία.</p>
+
+    <div class="warning-box">
+      <p><strong>📊 Τα στοιχεία που δεν μπορείτε να αγνοήσετε (ΟΔΔΗΧ, Φεβρ. 2026 – Eurostat, 30/4/2026):</strong><br>
+      – Το <strong>50%</strong> των εποπτικών κεφαλαίων των τραπεζών είναι DTCs (<strong>15,4 δισ. ευρώ</strong>).<br>
+      – Το ΔΝΤ εκτιμά την κρυφή δημοσιονομική έκθεση σε <strong>30 δισ. ευρώ</strong>.<br>
+      – Ο πληθωρισμός εκτοξεύθηκε στο <strong>4,6%</strong> – το υψηλότερο στην Ευρωζώνη.<br>
+      – Οι τράπεζες μοιράζουν <strong>1 δισ. ευρώ</strong> σε μετόχους, αντί να χρηματοδοτούν την παραγωγή.</p>
+    </div>
+
+    <p>Τα DTCs, το γνωρίζετε καλύτερα από εμάς:</p>
+    <ul class="styled-list">
+      <li><strong>Δεν</strong> μπορούν να απορροφήσουν ζημίες</li>
+      <li><strong>Δεν</strong> μπορούν να χρηματοδοτήσουν δάνεια</li>
+      <li><strong>Ενεργοποιούνται</strong> μόνο όταν οι τράπεζες γράψουν ζημίες – δηλαδή <strong>σε κρίση</strong></li>
+    </ul>
+
+    <div class="quote-box">
+      <p>Τον Οκτώβριο του 2024 <strong>το είπατε εσείς</strong> από το βήμα της Ελληνικής Ένωσης Τραπεζών: <strong>«η ποιότητα των εποπτικών ιδίων κεφαλαίων παραμένει χαμηλή, καθώς οι DTCς αντιπροσωπεύουν το 50,5% των κεφαλαίων»</strong> και <strong>«δρομολογούνται ήδη λύσεις»</strong>.<br>
+      <strong>Έκτοτε, τι κάνατε;</strong> Πού είναι οι λύσεις; Γιατί δεν μας λέτε τίποτα;</p>
+    </div>
+
+    <!-- ========== BAD BANK ========== -->
+    <h3 class="subsection-title">Η αντίφαση της Bad Bank</h3>
+
+    <p>Το 2020–2021, η Τράπεζα της Ελλάδος υπό την ηγεσία σας υπέβαλε <strong>επίσημη συστημική πρόταση</strong> για τη δημιουργία Εθνικής AMC (Bad Bank), στο πρότυπο NAMA, ΚΕΔΙΠΕΣ, SAREB. Εσείς είχατε τοποθετηθεί δημόσια: <strong>«Μια Bad Bank είναι η πιο αποτελεσματική λύση»</strong>. Γνωρίζατε ότι ικανοποιεί το κριτήριο Altmark, ότι είναι συμβατή με το ευρωπαϊκό δίκαιο, ότι λειτουργεί με υποχρεώσεις δημόσιας υπηρεσίας.</p>
+
+    <div class="callout-warning">
+      <p><strong>Και δεν την κάνατε.</strong> Την αφήσατε να πεθάνει. Και αντί γι' αυτήν, επιλέξατε (ή ανεχθήκατε) το ιδιωτικό σύστημα: τιτλοποιήσεις, πωλήσεις σε funds, servicers, με κρατικές εγγυήσεις 17,1 δισ. ευρώ.</p>
+    </div>
+
+    <p>Σας ρωτάμε ευθέως:</p>
+    <ul class="styled-list">
+      <li><strong>Γιατί εγκαταλείψατε αυτή την πρόταση;</strong> Ποιοι σας την εμπόδισαν; Δώστε ονόματα, δώστε αποδείξεις.</li>
+      <li><strong>Γιατί επιλέξατε πωλήσεις σε ιδιωτικές εμπορικές επιχειρήσεις και όχι έναν φορέα με υποχρεώσεις δημόσιας υπηρεσίας;</strong></li>
+      <li><strong>Σκοπεύετε να επαναφέρετε την πρότασή σας;</strong> Αν ναι, πότε; Αν όχι, γιατί;</li>
+    </ul>
+
+    <!-- ========== Η ΜΕΓΑΛΗ ΣΤΙΓΜΗ: 30 ΑΠΡΙΛΙΟΥ 2026 ========== -->
+    <h3 class="subsection-title">Η μεγάλη στιγμή της αντίφασης: 30 Απριλίου 2026</h3>
+
+    <div class="warning-box">
+      <p><strong>🔴 Την ίδια μέρα, δύο πρόσωπα:</strong><br>
+      – Η Eurostat: Πληθωρισμός 4,6% στην Ελλάδα (υψηλότερος στην Ευρωζώνη), οι πολίτες πνίγονται στην ακρίβεια.<br>
+      – Η Εθνική Τράπεζα (με τον κ. Χαρδούβελη πρόεδρο): Μοιράζουμε 1 δισ. ευρώ σε μετόχους, με έκτακτη διανομή 300 εκατ. – «Έχουμε χρήμα και μπορούμε να αγοράσουμε ασφαλιστική».</p>
+    </div>
+
+    <p>Κύριε Στουρνάρα, την ίδια ώρα που οι πολίτες καλούνται να πληρώσουν ακρίβεια 4,6%, εσείς επιτρέπετε στις τράπεζες που εποπτεύετε να μοιράζουν μερίσματα – ενώ τα κέρδη τους στηρίζονται σε κρατικές ενισχύσεις που εσείς οι ίδιοι νομοθετήσατε (DTCs, Ηρακλής).</p>
+
+    <div class="quote-box">
+      <p>Κύριε Στουρνάρα, <strong>δεν μπορείτε να εποπτεύετε τράπεζες που στηρίζονται στο κράτος και ταυτόχρονα να μην κάνετε τίποτα όταν αυτές μοιράζουν μερίσματα.</strong> Είστε ο επόπτης ή ο συνένοχος;</p>
+    </div>
+
+    <!-- ========== ΕΡΩΤΗΜΑΤΑ ΓΙΑ ΤΗΝ ΕΠΟΜΕΝΗ ΠΕΝΤΑΕΤΙΑ ========== -->
+    <div class="questions-block">
+      <h3>Ζητάτε μία ακόμα πενταετία. Ποιο είναι το πρόγραμμά σας;</h3>
+      <p>Κύριε Στουρνάρα, η ελληνική κοινωνία δεν μπορεί να συνεχίσει με μισές αλήθειες και λογιστικές πλάνες. Σας καλούμε να απαντήσετε, χωρίς υπεκφυγές:</p>
+      <ol>
+        <li><strong>Θα επαναφέρετε την πρόταση για Εθνική Bad Bank (AMC);</strong> Απάντηση ΝΑΙ ή ΟΧΙ.</li>
+        <li><strong>Σε ποιες συγκεκριμένες ημερομηνίες θα κλείσει η παρένθεση των DTCς;</strong> Αριθμητικοί στόχοι ανά έτος.</li>
+        <li><strong>Θα ζητήσετε την κατάργηση των φοροαπαλλαγών και των τραπεζικών προνομίων για funds και servicers;</strong> Απάντηση ΝΑΙ ή ΟΧΙ.</li>
+        <li><strong>Γιατί δεν εμποδίσατε την Εθνική Τράπεζα να μοιράσει 1 δισ. ευρώ σε μετόχους, όταν τα κέρδη της στηρίζονται σε κρατικές ενισχύσεις;</strong></li>
+        <li><strong>Γνωρίζατε ότι ο πληθωρισμός θα εκτοξευθεί στο 4,6%;</strong> Αν ναι, γιατί δεν προειδοποιήσατε; Αν όχι, γιατί αποτύχατε ως επόπτης;</li>
+      </ol>
+    </div>
+
+    <div class="conclusion-box">
+      <h3>📌 Το συμπέρασμα για εσάς, κύριε Στουρνάρα</h3>
+      <p>Είχατε την πρόταση, είχατε τη γνώση, είχατε τη θεσμική δύναμη. <strong>Δεν την ασκήσατε.</strong> Οι τράπεζες έγιναν πλουσιότερες, οι πολίτες φτωχότεροι, η ακρίβεια καλπάζει. Και τώρα ζητάτε να συνεχίσετε. <strong>Με ποιο επιχείρημα;</strong></p>
+    </div>
+
+  </section>
+
+  <!-- PART 4 -->
+  <section class="section" id="part4">
+    <span class="section-number">Μέρος Τέταρτο</span>
+    <h2 class="section-title">Ο Μύθος της Εξυγίανσης</h2>
+    <div class="section-title-rule"></div>
+
+    <p>Μας λέγατε χρόνια ότι η εξυγίανση των τραπεζών είναι γεγονός. Σήμερα σας λέμε: <strong>η αφήγηση αυτή ήταν ελλιπής. Τα ΜΕΔ δεν μειώθηκαν — μετακινήθηκαν.</strong></p>
+
+    <h3 class="subsection-title">Τρία τεκμήρια αποτυχίας</h3>
+
+    <div class="data-table-wrapper">
+      <table class="data-table">
+        <thead>
+          <tr><th>#</th><th>Τεκμήριο</th><th>Ανάλυση</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><strong>Τα DTCs</strong></td>
+            <td>50% εποπτικών κεφαλαίων είναι «δανεικό από το μέλλον». Καμία υγιής τράπεζα δεν λειτουργεί έτσι.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><strong>Δεν δανείζετε</strong></td>
+            <td>ΔΝΤ (2025): οι τράπεζες κερδίζουν από spread και προμήθειες — όχι από χρηματοδότηση παραγωγής.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><strong>Νέα ΜΕΔ γεννιούνται</strong></td>
+            <td>Η λεκάνη αδειάζει από πάνω, αλλά γεμίζει από κάτω. Αγοραστική δύναμη συρρικνώνεται.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Οι συνέπειες</h3>
+
+    <ul class="styled-list">
+      <li>Λογιστική μείωση, όχι πραγματική εξυγίανση</li>
+      <li>Ολιγοπώλιο — τρεις εταιρείες ελέγχουν το <strong>83%</strong> της αγοράς</li>
+      <li>Απώλεια εσόδων — φορολογικές απαλλαγές στερούν δισεκατομμύρια</li>
+      <li>Πλήγμα στη δικαστική προστασία</li>
+      <li>Η πρώτη κατοικία — νόμος Κατσέλη καταργήθηκε, Φορέας Επανεκμίσθωσης δεν λειτούργησε</li>
+    </ul>
+
+    <p>Από το 2021 και μετά, τα κέρδη των τραπεζών εκτοξεύθηκαν: <strong>3,7 δισ. το 2022, 4,3 δισ. το 2024</strong>. Οι servicers πέρασαν από ζημίες σε κερδοφορία εκατομμυρίων.</p>
+
+    <div class="callout-warning">
+      <p><strong>Η τραγική ειρωνεία:</strong> Την ώρα που η Eurostat ανακοίνωνε πληθωρισμό 4,6% – την υψηλότερη ακρίβεια στην Ευρωζώνη – οι τράπεζες μοίραζαν μερίσματα 1 δισ. και οι servicers κατέγραφαν υπερκέρδη. Η «εξυγίανση» των τραπεζών έγινε εις βάρος της κοινωνίας.</p>
+    </div>
+
+  </section>
+
+  <!-- PART 5 -->
+  <section class="section" id="part5">
+    <span class="section-number">Μέρος Πέμπτο</span>
+    <h2 class="section-title">45 Αποχρώσεις Κρατικής Ενίσχυσης</h2>
+    <div class="section-title-rule"></div>
+
+    <p>Έχουμε συγκεντρώσει <strong>45 διακριτές κρατικές ενισχύσεις</strong>, υπεραντισταθμίσεις και θεσμικές παρεμβάσεις, οργανωμένες σε έξι υποσυστήματα.</p>
+
+    <p>Ο πλήρης κατάλογος: <a href="https://anisonomia.com/stateaid_hypersystem/" target="_blank" rel="noopener">anisonomia.com/stateaid_hypersystem/</a></p>
+
+    <div class="questions-block">
+      <h3>Τα ερωτήματα που περιμένουν απάντηση</h3>
+      <ol>
+        <li>Εφόσον η λύση της Κακής Τράπεζας ήταν συμβατή με το ευρωπαϊκό δίκαιο — <strong>γιατί δεν την επιλέξατε;</strong></li>
+        <li>Με ποια κριτήρια δώσατε σε ιδιωτικές εισπρακτικές εταιρείες τραπεζικά προνόμια και φοροαπαλλαγές;</li>
+        <li>Θεωρείτε ότι η εικόνα ολιγοπωλίου, αδιαφάνειας και απώλειας εσόδων συνιστά επιτυχημένη εξυγίανση;</li>
+        <li>Γνωρίζοντας τη δήλωση «μου χαμογέλασε ο Θεός», γιατί δεν επαναφέρατε τη λύση της Bad Bank;</li>
+        <li>Δημιουργήσατε ένα de facto ελληνικό Section 110; Πότε θα ενημερώσετε την Ευρωπαϊκή Επιτροπή;</li>
+        <li>Αναγνωρίζετε έστω μία από τις 45 παρεμβάσεις ως κρατική ενίσχυση; Αν ναι, γιατί δεν κοινοποιήθηκε;</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="section" id="steps">
+    <span class="section-number">Αίτημα Δράσης</span>
+    <h2 class="section-title">Τέσσερα Άμεσα Βήματα</h2>
+    <div class="section-title-rule"></div>
+
+    <div class="steps-block">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <div class="step-content">
+          <strong>Διαφάνεια</strong>
+          <span>Δημοσιοποίηση συμβάσεων, τιμημάτων, πραγματικών δικαιούχων</span>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <div class="step-content">
+          <strong>Ενεργοποίηση Ανεξάρτητων Αρχών</strong>
+          <span>Έλεγχος ολιγοπωλίου, συμπράξεων</span>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <div class="step-content">
+          <strong>Άμεση αναστολή</strong>
+          <span>Πλειστηριασμών και δικαστικών προθεσμιών που αφορούν ΜΕΔ</span>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <div class="step-content">
+          <strong>Δημόσια διαβούλευση</strong>
+          <span>Χωρίς προκαθορισμένες λύσεις, με σεβασμό στο ευρωπαϊκό κεκτημένο</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <div class="section-title-rule" style="margin:0 auto 2rem;"></div>
+    <p class="closing-text">Δεν σας υποδεικνύουμε λύση. Σας ζητάμε πρώτα διαφάνεια, λογοδοσία και στοιχειώδη δικαιοσύνη. Χωρίς αυτά, καμία λύση δεν θα είναι ούτε δίκαιη ούτε βιώσιμη.</p>
+
+    <p class="closing-text" style="font-size:1.1rem;">Στα χέρια σας είναι να αποδείξετε ότι ακούτε. Αν δεν το κάνετε, η Ιστορία — και οι Έλληνες πολίτες — <strong>θα κρατήσουν αρχείο.</strong></p>
+
+    <div class="signature">
+      <p style="font-style:italic; margin-bottom:0.2rem;">Με εκτίμηση,</p>
+      <p><strong>Οι υπογράφοντες πολίτες και φορείς</strong></p>
+    </div>
+
+    <div class="footer-note">
+      Η επιστολή αυτή δημοσιεύεται και μπορεί να υπογραφεί από κάθε πολίτη, σύλλογο, ένωση ή φορέα που συμμερίζεται τις ανησυχίες. Οι απαντήσεις θα δημοσιοποιηθούν.
+    </div>
+  </div>
+
+</div><!-- /main-wrapper -->
+
+<footer>
+  <a href="https://anisonomia.com" target="_blank" rel="noopener">anisonomia.com</a>
+  &nbsp;·&nbsp;
+  <a href="https://anisonomia.com/stateaid_hypersystem/" target="_blank" rel="noopener">45 Κρατικές Ενισχύσεις</a>
+</footer>
+
+</body>
+</html>
